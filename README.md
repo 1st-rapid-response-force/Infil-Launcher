@@ -18,4 +18,6 @@ Developed in house by CPT. Rodriguez, INFIL allows for easy modpack updates, gam
 Any issues with Infil should be reported via Github Issue Tracking system
 
 
+### Credit
+Forked originally from RoyAwesome/SimpleLauncher
 
