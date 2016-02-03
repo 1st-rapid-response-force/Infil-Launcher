@@ -125,15 +125,12 @@ namespace SimpleUpdater.Properties {
             }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("http://content.1st-rrf.com/modpack/")]
         public string ContentURL {
             get {
                 return ((string)(this["ContentURL"]));
-            }
-            set {
-                this["ContentURL"] = value;
             }
         }
         
