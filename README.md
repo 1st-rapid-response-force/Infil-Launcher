@@ -1,26 +1,21 @@
-# SimpleLauncher
-A simple C# game launcher.  Designed for use in Unreal Engine 4, but can be used for just about anything.
+# Infil Launcher - 1st RRF official launcher
+Developed in house by CPT. Rodriguez, INFIL allows for easy modpack updates, game launching, with many improvements coming soon. 
 
 # Setup
 
-### Intial Setup
-* Set up a webserver of some kind.  Create a folder named `game` on the webserver
-* Create a file named `changelog.html`.  Fill it with your changelog infomation.
-* Create a file named `manifest.txt`.  Leave it blank for now
-* Clone project
-* In visual studio, double click Settings.  Change the changelog.html location to your changelog.  Same for Manifest.
-* Run the Launcher.  
-* Click the Options tab.  Change the following in the launcher options:
-  * `Builder_LastBuildNumber` to 1 (this will autoincrement)
-  * `Builder_LastExecutable` to your game's executable file (path relative to the game directory)
-  * `Builder_LastURL` to the url of the `game` folder on your webserver.
-  
-### Building a Game Version
+### Setup
+* Go to Releases and download the Infil.Launcher.zip File
+* Extract the file and run setup.exe
+* The program should auto install and run, however if it doesn't you can run it from your programs
+* Setup the file paths for ARMA3Launcher.exe and your selected mod folder via the Options tab
+* Update/Verify your modpack
+* Move userconfig in your modpack folder to your ARMA 3 Directory (If you run into issues, talk to someone in teamspeak)
+* Merge the Modpack Teamspeak Plugins folder with your Teamspeak plugins folder (If you run into issues, talk to someone in teamspeak)
+* Run the Game
 
-* Press `Build Manifest`.  Navigate to your game's build folder.  
-* Save the generated Manifest.txt. 
-* Replace the Manifest.txt on your webserver with the generated file.
-* Upload all of your game files into the `game` directory on your web server.
+  
+### Issues
+Any issues with Infil should be reported via Github Issue Tracking system
 
 
 
