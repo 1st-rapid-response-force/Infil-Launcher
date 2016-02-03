@@ -134,6 +134,7 @@ namespace SimpleUpdater
             backgroundWorker1.ProgressChanged += UpdateGame_ProgressChanged;
             backgroundWorker1.RunWorkerCompleted += UpdateGame_RunWorkerCompleted;
             backgroundWorker1.RunWorkerAsync();
+
         }
 
         void UpdateGame_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -337,11 +338,25 @@ namespace SimpleUpdater
         {
             if (RequiresUpdate)
             {
-                UpdateGame();
+                if (Properties.Settings.Default.ARMA_ModpackLocation == null || Properties.Settings.Default.ARMA_ModpackLocation == "")
+                {
+                    MessageBox.Show("Please set your preferred modpack download location in the options tab");
+                } else
+                {
+                    UpdateGame();
+                }
             }
             else
             {
-                LaunchGame();
+                if (Properties.Settings.Default.ARMA_Executable == null || Properties.Settings.Default.ARMA_Executable == "")
+                {
+                    MessageBox.Show("Please set your preferred modpack download location in the options tab");
+                }
+                else
+                {
+                    LaunchGame();
+                }
+        
             }
         }
 
@@ -368,6 +383,8 @@ namespace SimpleUpdater
             Properties.Settings.Default.Save();
 
             Process.Start(Properties.Settings.Default.ARMA_Executable, commandLine);
+           
+                
         }
 
         void process_Exited(object sender, EventArgs e)
