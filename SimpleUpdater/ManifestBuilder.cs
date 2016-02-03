@@ -13,11 +13,10 @@ namespace SimpleUpdater
     class ManifestBuilder
     {
 
-        public static void BuildManifest(string directory, int build, string executable, string gameURL)
+        public static void BuildManifest(string directory, int build, string gameURL)
         {
             LauncherManifest manifest = new LauncherManifest();
             manifest.Build = build;
-            manifest.Executable = executable;
             manifest.ProjectRoot = gameURL;
 
 
@@ -36,7 +35,6 @@ namespace SimpleUpdater
 
             Properties.Settings.Default.Builder_LastBuildNumber = build + 1;
             Properties.Settings.Default.Builder_LastDirectory = directory;
-            Properties.Settings.Default.Builder_LastExecutable = executable;
             Properties.Settings.Default.Builder_LastURL = gameURL;
             
 

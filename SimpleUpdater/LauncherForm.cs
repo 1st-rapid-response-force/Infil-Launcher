@@ -89,7 +89,7 @@ namespace SimpleUpdater
 
             WebClient webClient = new WebClient();
 
-            string gameDirectory = Properties.Settings.Default.GameInstallDirectory;
+            string gameDirectory = Properties.Settings.Default.ARMA_ModpackLocation;
             string localManifest = gameDirectory + Path.DirectorySeparatorChar + LocalManifestFilename;
 
             if (!File.Exists(localManifest))
@@ -126,7 +126,7 @@ namespace SimpleUpdater
             updatePlayButton.Text = "Updating...";
             updatePlayButton.Enabled = false;
 
-            Directory.CreateDirectory(Properties.Settings.Default.GameInstallDirectory);
+            Directory.CreateDirectory(Properties.Settings.Default.ARMA_ModpackLocation);
 
             backgroundWorker1.WorkerReportsProgress = true;
             backgroundWorker1.WorkerSupportsCancellation = true;
@@ -145,6 +145,18 @@ namespace SimpleUpdater
                 return;
             }
 
+            //Deal with User Config files
+            var armaUserConfig = Properties.Settings.Default.ARMA_Executable + "\\userconfig";
+            var modpackUserConfig = Properties.Settings.Default.ARMA_ModpackLocation + "\\userconfig";
+
+            Process proc = new Process();
+            proc.StartInfo.UseShellExecute = true;
+            proc.StartInfo.FileName = @"C:\WINDOWS\system32\xcopy.exe";
+            proc.StartInfo.Arguments = @"C:\source C:\destination /E /I";
+            proc.StartInfo.Arguments = modpackUserConfig + " "+armaUserConfig + " /E /I";
+            proc.Start();
+
+       
             StatusLabel.Text = "Ready to play";
             RequiresUpdate = false;
             updatePlayButton.Text = "Play";
@@ -172,7 +184,7 @@ namespace SimpleUpdater
             LauncherManifest RemoteManifest = JsonConvert.DeserializeObject<LauncherManifest>(manifest);
 
 
-            string gameInstallDir = Properties.Settings.Default.GameInstallDirectory;
+            string gameInstallDir = Properties.Settings.Default.ARMA_ModpackLocation;
 
             var md5 = MD5.Create();
             int totalFiles = RemoteManifest.Files.Count;
@@ -180,8 +192,6 @@ namespace SimpleUpdater
             int curFile = 0;
             foreach (KeyValuePair<string, string> kv in RemoteManifest.Files)
             {
-
-
 
                 bool ShouldDownload = false;
                 string gameFilePath = gameInstallDir + kv.Key.Replace("/", Path.DirectorySeparatorChar.ToString());
@@ -233,7 +243,7 @@ namespace SimpleUpdater
 
             backgroundWorker1.ReportProgress(100, "Writing Local Manifest");
 
-            string gameDirectory = Properties.Settings.Default.GameInstallDirectory;
+            string gameDirectory = Properties.Settings.Default.ARMA_ModpackLocation;
             string localManifest = gameDirectory + Path.DirectorySeparatorChar + LocalManifestFilename;
 
             File.WriteAllText(localManifest, manifest);
@@ -258,7 +268,7 @@ namespace SimpleUpdater
 
             backgroundWorker1.ReportProgress(progress, status);
 
-            string remoteFile = (RemoteManifest.ProjectRoot + kv.Key.Substring(1));
+            string remoteFile = (Properties.Settings.Default.ContentURL + RemoteManifest.ProjectRoot + kv.Key.Substring(1));
 
             Directory.CreateDirectory(Path.GetDirectoryName(gameFilePath));
             if (File.Exists(gameFilePath))
@@ -319,7 +329,7 @@ namespace SimpleUpdater
 
                 int buildNumber = Properties.Settings.Default.Builder_LastBuildNumber;
 
-                ManifestBuilder.BuildManifest(path, buildNumber, Properties.Settings.Default.Builder_LastExecutable, Properties.Settings.Default.Builder_LastURL);
+                ManifestBuilder.BuildManifest(path, buildNumber, Properties.Settings.Default.Builder_LastURL);
             }
         }
 
@@ -337,27 +347,27 @@ namespace SimpleUpdater
 
         private void LaunchGame()
         {
-            string gameDirectory = Properties.Settings.Default.GameInstallDirectory;
-            string localManifest = gameDirectory + Path.DirectorySeparatorChar + LocalManifestFilename;
+            string gameInstallDir = Properties.Settings.Default.ARMA_ModpackLocation;
+            var commandLine = "-noLauncher -useBE";
+            var modpackLocation = Properties.Settings.Default.ARMA_ModpackLocation;
+            var customCommandLine = Properties.Settings.Default.ARMA_CustomCommandLine;
+            var modLine = " -mod=" +
+                modpackLocation + "\\@1rrf_content;" +
+                modpackLocation + "\\@1rrf_maps;" +
+                modpackLocation + "\\@1rrf_utility;" +
+                modpackLocation + "\\@ace;" +
+                modpackLocation + "\\@ares;" +
+                modpackLocation + "\\@cba_a3;" +
+                modpackLocation + "\\@rhs_afrf;" +
+                modpackLocation + "\\@rhs_usaf;" +
+                modpackLocation + "\\@task_force_radio;";
+            commandLine = commandLine + modLine + customCommandLine;
 
-            LauncherManifest LocalManifest = JsonConvert.DeserializeObject<LauncherManifest>(File.ReadAllText(localManifest));
-            string gameInstallDir = Properties.Settings.Default.GameInstallDirectory;
+            //Save Last Command Line Run for Debug
+            Properties.Settings.Default.ARMA_CustomCommandLine = commandLine;
+            Properties.Settings.Default.Save();
 
-            ProcessStartInfo psi = new ProcessStartInfo();
-
-            psi.FileName = LocalManifest.Executable;
-            psi.WorkingDirectory = Path.GetFullPath(gameInstallDir);
-            psi.UseShellExecute = true;
-
-
-
-
-            this.WindowState = FormWindowState.Minimized;
-            Process process = Process.Start(psi);
-            process.Exited += process_Exited;
-
-
-
+            Process.Start(Properties.Settings.Default.ARMA_Executable, commandLine);
         }
 
         void process_Exited(object sender, EventArgs e)
@@ -375,5 +385,79 @@ namespace SimpleUpdater
             UpdateGame();
         }
 
+        private void setARMA_Click(object sender, EventArgs e)
+        {
+            // Create an instance of the open file dialog box.
+            OpenFileDialog armaExecutable = new OpenFileDialog();
+
+            // Set filter options and filter index.
+            armaExecutable.Filter = "ARMA 3 Launcher (arma3launcher.exe)|arma3launcher.exe";
+            armaExecutable.FilterIndex = 1;
+
+            // Process input if the user clicked OK.
+            if (armaExecutable.ShowDialog() == DialogResult.OK)
+            {
+                Properties.Settings.Default.ARMA_Executable = armaExecutable.FileName;
+                Properties.Settings.Default.Save();
+                propertyGrid1.SelectedObject = Properties.Settings.Default;
+            }
+        }
+
+        private void setModpackFolder_Click(object sender, EventArgs e)
+        {
+            // Create an instance of the open file dialog box.
+            FolderBrowserDialog modpackLocation = new FolderBrowserDialog();
+
+            // Process input if the user clicked OK.
+            if (modpackLocation.ShowDialog() == DialogResult.OK)
+            {
+                Properties.Settings.Default.ARMA_ModpackLocation = modpackLocation.SelectedPath;
+                Properties.Settings.Default.Save();
+                propertyGrid1.SelectedObject = Properties.Settings.Default;
+            }
+        }
+
+        private void setTeamspeakPluginFolder_Click(object sender, EventArgs e)
+        {
+            // Create an instance of the open file dialog box.
+            FolderBrowserDialog teamspeakLocation = new FolderBrowserDialog();
+
+            // Process input if the user clicked OK.
+            if (teamspeakLocation.ShowDialog() == DialogResult.OK)
+            {
+                Properties.Settings.Default.TeamspeakPluginFolder = teamspeakLocation.SelectedPath;
+                Properties.Settings.Default.Save();
+                propertyGrid1.SelectedObject = Properties.Settings.Default;
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (Properties.Settings.Default.TeamspeakPluginFolder == null | Properties.Settings.Default.TeamspeakPluginFolder == "")
+            {
+                MessageBox.Show("You need to the Teamspeak Plugin Folder before we can copy for the plugin files.");
+            } else if(RequiresUpdate == true){
+                MessageBox.Show("You need to update/verify your modpack before you can install the teamspeak plugin files.");
+            } else {
+                var teamspeakLocation = Properties.Settings.Default.TeamspeakPluginFolder;
+                var pluginsFolder = Properties.Settings.Default.ARMA_ModpackLocation+ "\\plugin_files\\teamspeak\\plugins";
+
+                //Now Create all of the directories
+                foreach (string dirPath in Directory.GetDirectories(pluginsFolder, "*",
+                    SearchOption.AllDirectories))
+                    Directory.CreateDirectory(dirPath.Replace(pluginsFolder, teamspeakLocation));
+
+                //Copy all the files & Replaces any files with the same name
+                foreach (string newPath in Directory.GetFiles(pluginsFolder, "*.*",
+                    SearchOption.AllDirectories))
+                {
+                    File.SetAttributes(newPath, FileAttributes.Normal);
+                    File.Copy(newPath, newPath.Replace(pluginsFolder, teamspeakLocation), true);
+                }
+                    
+
+            }
+              
+        }
     }
 }

@@ -31,11 +31,5 @@ namespace SimpleUpdater
             get;
             set;
         }
-
-        public string Executable
-        {
-            get;
-            set;
-        }
     }
 }

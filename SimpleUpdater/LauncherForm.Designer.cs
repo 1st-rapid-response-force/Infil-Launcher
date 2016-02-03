@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LauncherForm));
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.updatePlayButton = new System.Windows.Forms.Button();
@@ -35,14 +36,21 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.changelogBrowser = new System.Windows.Forms.WebBrowser();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.setModpackFolder = new System.Windows.Forms.Button();
+            this.setARMA = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.validateButton = new System.Windows.Forms.Button();
             this.buildManifestButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.StatusLabel = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
-            this.validateButton = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
+            this.backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
+            this.setTeamspeakPluginFolder = new System.Windows.Forms.Button();
+            this.installTaskForce = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -65,14 +73,14 @@
             // 
             this.progressBar1.Location = new System.Drawing.Point(12, 488);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(745, 33);
+            this.progressBar1.Size = new System.Drawing.Size(728, 33);
             this.progressBar1.TabIndex = 2;
             // 
             // updatePlayButton
             // 
-            this.updatePlayButton.Location = new System.Drawing.Point(764, 489);
+            this.updatePlayButton.Location = new System.Drawing.Point(764, 488);
             this.updatePlayButton.Name = "updatePlayButton";
-            this.updatePlayButton.Size = new System.Drawing.Size(143, 32);
+            this.updatePlayButton.Size = new System.Drawing.Size(143, 33);
             this.updatePlayButton.TabIndex = 4;
             this.updatePlayButton.Text = "Update";
             this.updatePlayButton.UseVisualStyleBackColor = true;
@@ -120,9 +128,100 @@
             this.tabPage2.Text = "Options";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(3, 3);
+            this.splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.propertyGrid1);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.installTaskForce);
+            this.splitContainer1.Panel2.Controls.Add(this.setTeamspeakPluginFolder);
+            this.splitContainer1.Panel2.Controls.Add(this.label4);
+            this.splitContainer1.Panel2.Controls.Add(this.label3);
+            this.splitContainer1.Panel2.Controls.Add(this.setModpackFolder);
+            this.splitContainer1.Panel2.Controls.Add(this.setARMA);
+            this.splitContainer1.Panel2.Controls.Add(this.label2);
+            this.splitContainer1.Panel2.Controls.Add(this.validateButton);
+            this.splitContainer1.Panel2.Controls.Add(this.buildManifestButton);
+            this.splitContainer1.Size = new System.Drawing.Size(905, 426);
+            this.splitContainer1.SplitterDistance = 623;
+            this.splitContainer1.TabIndex = 2;
+            // 
+            // propertyGrid1
+            // 
+            this.propertyGrid1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.propertyGrid1.Location = new System.Drawing.Point(0, 0);
+            this.propertyGrid1.Name = "propertyGrid1";
+            this.propertyGrid1.Size = new System.Drawing.Size(623, 426);
+            this.propertyGrid1.TabIndex = 0;
+            this.propertyGrid1.SelectedObjectsChanged += new System.EventHandler(this.propertyGrid1_SelectedObjectsChanged);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(105, 334);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(59, 13);
+            this.label4.TabIndex = 6;
+            this.label4.Text = "Do not use";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(4, 334);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(95, 13);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "Developer Utilities:";
+            // 
+            // setModpackFolder
+            // 
+            this.setModpackFolder.Location = new System.Drawing.Point(145, 61);
+            this.setModpackFolder.Name = "setModpackFolder";
+            this.setModpackFolder.Size = new System.Drawing.Size(130, 43);
+            this.setModpackFolder.TabIndex = 4;
+            this.setModpackFolder.Text = "Set Modpack Download Folder";
+            this.setModpackFolder.UseVisualStyleBackColor = true;
+            this.setModpackFolder.Click += new System.EventHandler(this.setModpackFolder_Click);
+            // 
+            // setARMA
+            // 
+            this.setARMA.Location = new System.Drawing.Point(145, 32);
+            this.setARMA.Name = "setARMA";
+            this.setARMA.Size = new System.Drawing.Size(130, 23);
+            this.setARMA.TabIndex = 3;
+            this.setARMA.Text = "Set ARMA 3 Executable";
+            this.setARMA.UseVisualStyleBackColor = true;
+            this.setARMA.Click += new System.EventHandler(this.setARMA_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(4, 16);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(43, 13);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Utilities:";
+            // 
+            // validateButton
+            // 
+            this.validateButton.Location = new System.Drawing.Point(7, 32);
+            this.validateButton.Name = "validateButton";
+            this.validateButton.Size = new System.Drawing.Size(130, 23);
+            this.validateButton.TabIndex = 1;
+            this.validateButton.Text = "Validate Modpack";
+            this.validateButton.UseVisualStyleBackColor = true;
+            this.validateButton.Click += new System.EventHandler(this.validateButton_Click);
+            // 
             // buildManifestButton
             // 
-            this.buildManifestButton.Location = new System.Drawing.Point(7, 61);
+            this.buildManifestButton.Location = new System.Drawing.Point(7, 350);
             this.buildManifestButton.Name = "buildManifestButton";
             this.buildManifestButton.Size = new System.Drawing.Size(130, 23);
             this.buildManifestButton.TabIndex = 0;
@@ -148,57 +247,33 @@
             this.StatusLabel.TabIndex = 7;
             this.StatusLabel.Text = "Checking For Updates...";
             // 
-            // splitContainer1
+            // setTeamspeakPluginFolder
             // 
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(3, 3);
-            this.splitContainer1.Name = "splitContainer1";
+            this.setTeamspeakPluginFolder.Location = new System.Drawing.Point(145, 110);
+            this.setTeamspeakPluginFolder.Name = "setTeamspeakPluginFolder";
+            this.setTeamspeakPluginFolder.Size = new System.Drawing.Size(130, 23);
+            this.setTeamspeakPluginFolder.TabIndex = 7;
+            this.setTeamspeakPluginFolder.Text = "Set Teamspeak Plugin Folder";
+            this.setTeamspeakPluginFolder.UseVisualStyleBackColor = true;
+            this.setTeamspeakPluginFolder.Visible = false;
+            this.setTeamspeakPluginFolder.Click += new System.EventHandler(this.setTeamspeakPluginFolder_Click);
             // 
-            // splitContainer1.Panel1
+            // installTaskForce
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.propertyGrid1);
-            // 
-            // splitContainer1.Panel2
-            // 
-            this.splitContainer1.Panel2.Controls.Add(this.label2);
-            this.splitContainer1.Panel2.Controls.Add(this.validateButton);
-            this.splitContainer1.Panel2.Controls.Add(this.buildManifestButton);
-            this.splitContainer1.Size = new System.Drawing.Size(905, 426);
-            this.splitContainer1.SplitterDistance = 623;
-            this.splitContainer1.TabIndex = 2;
-            // 
-            // propertyGrid1
-            // 
-            this.propertyGrid1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.propertyGrid1.Location = new System.Drawing.Point(0, 0);
-            this.propertyGrid1.Name = "propertyGrid1";
-            this.propertyGrid1.Size = new System.Drawing.Size(623, 426);
-            this.propertyGrid1.TabIndex = 0;
-            this.propertyGrid1.SelectedObjectsChanged += new System.EventHandler(this.propertyGrid1_SelectedObjectsChanged);
-            // 
-            // validateButton
-            // 
-            this.validateButton.Location = new System.Drawing.Point(7, 32);
-            this.validateButton.Name = "validateButton";
-            this.validateButton.Size = new System.Drawing.Size(130, 23);
-            this.validateButton.TabIndex = 1;
-            this.validateButton.Text = "Validate Game Files";
-            this.validateButton.UseVisualStyleBackColor = true;
-            this.validateButton.Click += new System.EventHandler(this.validateButton_Click);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(4, 16);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(43, 13);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Utilities:";
+            this.installTaskForce.Location = new System.Drawing.Point(7, 61);
+            this.installTaskForce.Name = "installTaskForce";
+            this.installTaskForce.Size = new System.Drawing.Size(130, 23);
+            this.installTaskForce.TabIndex = 8;
+            this.installTaskForce.Text = "Install Taskforce Radio";
+            this.installTaskForce.UseVisualStyleBackColor = true;
+            this.installTaskForce.Visible = false;
+            this.installTaskForce.Click += new System.EventHandler(this.button1_Click);
             // 
             // LauncherForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(919, 527);
             this.Controls.Add(this.StatusLabel);
             this.Controls.Add(this.label1);
@@ -206,8 +281,9 @@
             this.Controls.Add(this.updatePlayButton);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.splitter1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "LauncherForm";
-            this.Text = "Game Launcher";
+            this.Text = "Infil - 1st RRF Game Launcher";
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
@@ -238,6 +314,13 @@
         private System.Windows.Forms.PropertyGrid propertyGrid1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button validateButton;
+        private System.Windows.Forms.Button setARMA;
+        private System.Windows.Forms.Button setModpackFolder;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button setTeamspeakPluginFolder;
+        private System.ComponentModel.BackgroundWorker backgroundWorker2;
+        private System.Windows.Forms.Button installTaskForce;
     }
 }
 

@@ -3,13 +3,10 @@
   <Profiles />
   <Settings>
     <Setting Name="ChangelogURL" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">www.example.com/changelog.html</Value>
+      <Value Profile="(Default)">1st-rrf.com/infil</Value>
     </Setting>
     <Setting Name="ManifestURL" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">www.example.com/Manifest.txt</Value>
-    </Setting>
-    <Setting Name="GameInstallDirectory" Type="System.String" Scope="User">
-      <Value Profile="(Default)">game</Value>
+      <Value Profile="(Default)">http://content.1st-rrf.com/modpack/Manifest.txt</Value>
     </Setting>
     <Setting Name="Builder_LastBuildNumber" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">1</Value>
@@ -17,10 +14,25 @@
     <Setting Name="Builder_LastDirectory" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="Builder_LastExecutable" Type="System.String" Scope="User">
+    <Setting Name="Builder_LastURL" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="Builder_LastURL" Type="System.String" Scope="User">
+    <Setting Name="ARMA_CustomCommandLine" Type="System.String" Scope="User">
+      <Value Profile="(Default)">-nosplash -skipIntro</Value>
+    </Setting>
+    <Setting Name="ARMA_Executable" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="ARMA_ModpackLocation" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="ARMA_LastCommandLine" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="ContentURL" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://content.1st-rrf.com/modpack/</Value>
+    </Setting>
+    <Setting Name="TeamspeakPluginFolder" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
   </Settings>
