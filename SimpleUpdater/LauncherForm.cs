@@ -380,6 +380,7 @@ namespace SimpleUpdater
 
             //Save Last Command Line Run for Debug
             Properties.Settings.Default.ARMA_CustomCommandLine = commandLine;
+            propertyGrid1.SelectedObject = Properties.Settings.Default;
             Properties.Settings.Default.Save();
 
             Process.Start(Properties.Settings.Default.ARMA_Executable, commandLine);
