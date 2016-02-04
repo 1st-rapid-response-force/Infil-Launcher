@@ -350,7 +350,7 @@ namespace SimpleUpdater
             {
                 if (Properties.Settings.Default.ARMA_Executable == null || Properties.Settings.Default.ARMA_Executable == "")
                 {
-                    MessageBox.Show("Please set your preferred modpack download location in the options tab");
+                    MessageBox.Show("Please set your preferred ARMA launcher directory in the options tab");
                 }
                 else
                 {
@@ -379,7 +379,7 @@ namespace SimpleUpdater
             commandLine = commandLine + modLine + customCommandLine;
 
             //Save Last Command Line Run for Debug
-            Properties.Settings.Default.ARMA_CustomCommandLine = commandLine;
+            Properties.Settings.Default.ARMA_LastCommandLine = commandLine;
             propertyGrid1.SelectedObject = Properties.Settings.Default;
             Properties.Settings.Default.Save();
 
@@ -476,6 +476,11 @@ namespace SimpleUpdater
 
             }
               
+        }
+
+        private void buildDifferencesManifest_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

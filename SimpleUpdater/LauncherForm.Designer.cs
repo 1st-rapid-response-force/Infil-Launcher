@@ -38,6 +38,8 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
+            this.installTaskForce = new System.Windows.Forms.Button();
+            this.setTeamspeakPluginFolder = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.setModpackFolder = new System.Windows.Forms.Button();
@@ -49,8 +51,7 @@
             this.StatusLabel = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
-            this.setTeamspeakPluginFolder = new System.Windows.Forms.Button();
-            this.installTaskForce = new System.Windows.Forms.Button();
+            this.buildDifferencesManifest = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -105,7 +106,7 @@
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(911, 432);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Changelog";
+            this.tabPage1.Text = "Infil Intel";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // changelogBrowser
@@ -140,6 +141,7 @@
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.buildDifferencesManifest);
             this.splitContainer1.Panel2.Controls.Add(this.installTaskForce);
             this.splitContainer1.Panel2.Controls.Add(this.setTeamspeakPluginFolder);
             this.splitContainer1.Panel2.Controls.Add(this.label4);
@@ -162,10 +164,32 @@
             this.propertyGrid1.TabIndex = 0;
             this.propertyGrid1.SelectedObjectsChanged += new System.EventHandler(this.propertyGrid1_SelectedObjectsChanged);
             // 
+            // installTaskForce
+            // 
+            this.installTaskForce.Location = new System.Drawing.Point(9, 90);
+            this.installTaskForce.Name = "installTaskForce";
+            this.installTaskForce.Size = new System.Drawing.Size(130, 23);
+            this.installTaskForce.TabIndex = 8;
+            this.installTaskForce.Text = "Install Taskforce Radio";
+            this.installTaskForce.UseVisualStyleBackColor = true;
+            this.installTaskForce.Visible = false;
+            this.installTaskForce.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // setTeamspeakPluginFolder
+            // 
+            this.setTeamspeakPluginFolder.Location = new System.Drawing.Point(145, 110);
+            this.setTeamspeakPluginFolder.Name = "setTeamspeakPluginFolder";
+            this.setTeamspeakPluginFolder.Size = new System.Drawing.Size(130, 23);
+            this.setTeamspeakPluginFolder.TabIndex = 7;
+            this.setTeamspeakPluginFolder.Text = "Set Teamspeak Plugin Folder";
+            this.setTeamspeakPluginFolder.UseVisualStyleBackColor = true;
+            this.setTeamspeakPluginFolder.Visible = false;
+            this.setTeamspeakPluginFolder.Click += new System.EventHandler(this.setTeamspeakPluginFolder_Click);
+            // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(105, 334);
+            this.label4.Location = new System.Drawing.Point(107, 313);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(59, 13);
             this.label4.TabIndex = 6;
@@ -174,7 +198,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(4, 334);
+            this.label3.Location = new System.Drawing.Point(6, 313);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(95, 13);
             this.label3.TabIndex = 5;
@@ -221,9 +245,9 @@
             // 
             // buildManifestButton
             // 
-            this.buildManifestButton.Location = new System.Drawing.Point(7, 350);
+            this.buildManifestButton.Location = new System.Drawing.Point(7, 329);
             this.buildManifestButton.Name = "buildManifestButton";
-            this.buildManifestButton.Size = new System.Drawing.Size(130, 23);
+            this.buildManifestButton.Size = new System.Drawing.Size(130, 40);
             this.buildManifestButton.TabIndex = 0;
             this.buildManifestButton.Text = "Build Manifest";
             this.buildManifestButton.UseVisualStyleBackColor = true;
@@ -247,27 +271,15 @@
             this.StatusLabel.TabIndex = 7;
             this.StatusLabel.Text = "Checking For Updates...";
             // 
-            // setTeamspeakPluginFolder
+            // buildDifferencesManifest
             // 
-            this.setTeamspeakPluginFolder.Location = new System.Drawing.Point(145, 110);
-            this.setTeamspeakPluginFolder.Name = "setTeamspeakPluginFolder";
-            this.setTeamspeakPluginFolder.Size = new System.Drawing.Size(130, 23);
-            this.setTeamspeakPluginFolder.TabIndex = 7;
-            this.setTeamspeakPluginFolder.Text = "Set Teamspeak Plugin Folder";
-            this.setTeamspeakPluginFolder.UseVisualStyleBackColor = true;
-            this.setTeamspeakPluginFolder.Visible = false;
-            this.setTeamspeakPluginFolder.Click += new System.EventHandler(this.setTeamspeakPluginFolder_Click);
-            // 
-            // installTaskForce
-            // 
-            this.installTaskForce.Location = new System.Drawing.Point(7, 61);
-            this.installTaskForce.Name = "installTaskForce";
-            this.installTaskForce.Size = new System.Drawing.Size(130, 23);
-            this.installTaskForce.TabIndex = 8;
-            this.installTaskForce.Text = "Install Taskforce Radio";
-            this.installTaskForce.UseVisualStyleBackColor = true;
-            this.installTaskForce.Visible = false;
-            this.installTaskForce.Click += new System.EventHandler(this.button1_Click);
+            this.buildDifferencesManifest.Location = new System.Drawing.Point(143, 329);
+            this.buildDifferencesManifest.Name = "buildDifferencesManifest";
+            this.buildDifferencesManifest.Size = new System.Drawing.Size(130, 40);
+            this.buildDifferencesManifest.TabIndex = 9;
+            this.buildDifferencesManifest.Text = "Build Difference Manifest";
+            this.buildDifferencesManifest.UseVisualStyleBackColor = true;
+            this.buildDifferencesManifest.Click += new System.EventHandler(this.buildDifferencesManifest_Click);
             // 
             // LauncherForm
             // 
@@ -321,6 +333,7 @@
         private System.Windows.Forms.Button setTeamspeakPluginFolder;
         private System.ComponentModel.BackgroundWorker backgroundWorker2;
         private System.Windows.Forms.Button installTaskForce;
+        private System.Windows.Forms.Button buildDifferencesManifest;
     }
 }
 
