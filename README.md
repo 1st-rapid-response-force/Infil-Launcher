@@ -12,8 +12,8 @@ Developed in house by CPT. Rodriguez, INFIL allows for easy modpack updates, gam
 * Update/Verify your modpack
 * Move userconfig in your modpack folder to your ARMA 3 Directory (If you run into issues, talk to someone in teamspeak)
 * Merge the Modpack Teamspeak Plugins folder with your Teamspeak plugins folder (If you run into issues, talk to someone in teamspeak)
-* Run the Game
-* 
+* Run the Game   
+
 ### Updating the Launcher
 You can easily update the launcher to the latest version by running the setup.exe file again, this will pull the latest binary from our content server and run it.
 
