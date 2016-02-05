@@ -38,6 +38,7 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
+            this.buildDifferencesManifest = new System.Windows.Forms.Button();
             this.installTaskForce = new System.Windows.Forms.Button();
             this.setTeamspeakPluginFolder = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
@@ -51,7 +52,7 @@
             this.StatusLabel = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
-            this.buildDifferencesManifest = new System.Windows.Forms.Button();
+            this.aboutInfil = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -141,6 +142,7 @@
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.aboutInfil);
             this.splitContainer1.Panel2.Controls.Add(this.buildDifferencesManifest);
             this.splitContainer1.Panel2.Controls.Add(this.installTaskForce);
             this.splitContainer1.Panel2.Controls.Add(this.setTeamspeakPluginFolder);
@@ -164,6 +166,16 @@
             this.propertyGrid1.TabIndex = 0;
             this.propertyGrid1.SelectedObjectsChanged += new System.EventHandler(this.propertyGrid1_SelectedObjectsChanged);
             // 
+            // buildDifferencesManifest
+            // 
+            this.buildDifferencesManifest.Location = new System.Drawing.Point(143, 329);
+            this.buildDifferencesManifest.Name = "buildDifferencesManifest";
+            this.buildDifferencesManifest.Size = new System.Drawing.Size(130, 40);
+            this.buildDifferencesManifest.TabIndex = 9;
+            this.buildDifferencesManifest.Text = "Build Difference Manifest";
+            this.buildDifferencesManifest.UseVisualStyleBackColor = true;
+            this.buildDifferencesManifest.Click += new System.EventHandler(this.buildDifferencesManifest_Click);
+            // 
             // installTaskForce
             // 
             this.installTaskForce.Location = new System.Drawing.Point(9, 90);
@@ -177,7 +189,7 @@
             // 
             // setTeamspeakPluginFolder
             // 
-            this.setTeamspeakPluginFolder.Location = new System.Drawing.Point(145, 110);
+            this.setTeamspeakPluginFolder.Location = new System.Drawing.Point(145, 277);
             this.setTeamspeakPluginFolder.Name = "setTeamspeakPluginFolder";
             this.setTeamspeakPluginFolder.Size = new System.Drawing.Size(130, 23);
             this.setTeamspeakPluginFolder.TabIndex = 7;
@@ -271,15 +283,15 @@
             this.StatusLabel.TabIndex = 7;
             this.StatusLabel.Text = "Checking For Updates...";
             // 
-            // buildDifferencesManifest
+            // aboutInfil
             // 
-            this.buildDifferencesManifest.Location = new System.Drawing.Point(143, 329);
-            this.buildDifferencesManifest.Name = "buildDifferencesManifest";
-            this.buildDifferencesManifest.Size = new System.Drawing.Size(130, 40);
-            this.buildDifferencesManifest.TabIndex = 9;
-            this.buildDifferencesManifest.Text = "Build Difference Manifest";
-            this.buildDifferencesManifest.UseVisualStyleBackColor = true;
-            this.buildDifferencesManifest.Click += new System.EventHandler(this.buildDifferencesManifest_Click);
+            this.aboutInfil.Location = new System.Drawing.Point(145, 110);
+            this.aboutInfil.Name = "aboutInfil";
+            this.aboutInfil.Size = new System.Drawing.Size(130, 23);
+            this.aboutInfil.TabIndex = 10;
+            this.aboutInfil.Text = "About Infil";
+            this.aboutInfil.UseVisualStyleBackColor = true;
+            this.aboutInfil.Click += new System.EventHandler(this.aboutInfil_Click);
             // 
             // LauncherForm
             // 
@@ -294,6 +306,9 @@
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.splitter1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(935, 566);
+            this.MinimumSize = new System.Drawing.Size(935, 566);
             this.Name = "LauncherForm";
             this.Text = "Infil - 1st RRF Game Launcher";
             this.tabControl1.ResumeLayout(false);
@@ -334,6 +349,7 @@
         private System.ComponentModel.BackgroundWorker backgroundWorker2;
         private System.Windows.Forms.Button installTaskForce;
         private System.Windows.Forms.Button buildDifferencesManifest;
+        private System.Windows.Forms.Button aboutInfil;
     }
 }
 

@@ -13,6 +13,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
+using System.Reflection;
 
 namespace SimpleUpdater
 {
@@ -366,6 +367,8 @@ namespace SimpleUpdater
             var commandLine = "-noLauncher -useBE";
             var modpackLocation = Properties.Settings.Default.ARMA_ModpackLocation;
             var customCommandLine = Properties.Settings.Default.ARMA_CustomCommandLine;
+            var gamepath = Path.GetDirectoryName(Properties.Settings.Default.ARMA_Executable);
+
             var modLine = " -mod=" +
                 modpackLocation + "\\@1rrf_content;" +
                 modpackLocation + "\\@1rrf_maps;" +
@@ -376,6 +379,8 @@ namespace SimpleUpdater
                 modpackLocation + "\\@rhs_afrf;" +
                 modpackLocation + "\\@rhs_usaf;" +
                 modpackLocation + "\\@task_force_radio;";
+
+
             commandLine = commandLine + modLine + customCommandLine;
 
             //Save Last Command Line Run for Debug
@@ -416,6 +421,7 @@ namespace SimpleUpdater
             if (armaExecutable.ShowDialog() == DialogResult.OK)
             {
                 Properties.Settings.Default.ARMA_Executable = armaExecutable.FileName;
+
                 Properties.Settings.Default.Save();
                 propertyGrid1.SelectedObject = Properties.Settings.Default;
             }
@@ -481,6 +487,11 @@ namespace SimpleUpdater
         private void buildDifferencesManifest_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void aboutInfil_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(Properties.Settings.Default.infilVersion);
         }
     }
 }

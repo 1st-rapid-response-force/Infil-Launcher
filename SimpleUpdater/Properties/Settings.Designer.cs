@@ -145,5 +145,14 @@ namespace SimpleUpdater.Properties {
                 this["TeamspeakPluginFolder"] = value;
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1.0.4")]
+        public string infilVersion {
+            get {
+                return ((string)(this["infilVersion"]));
+            }
+        }
     }
 }
