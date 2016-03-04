@@ -7,6 +7,8 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using JsonDiffPatchDotNet;
+using Newtonsoft.Json.Linq;
 
 namespace SimpleUpdater
 {
@@ -19,11 +21,11 @@ namespace SimpleUpdater
             manifest.Build = build;
             manifest.ProjectRoot = gameURL;
 
-
-
             md5 = MD5.Create();
 
             RecursiveBuildManifest(directory, "", manifest);
+            
+
 
             SaveFileDialog dialog = new SaveFileDialog();
             dialog.InitialDirectory = Environment.CurrentDirectory;
@@ -36,7 +38,7 @@ namespace SimpleUpdater
             Properties.Settings.Default.Builder_LastBuildNumber = build + 1;
             Properties.Settings.Default.Builder_LastDirectory = directory;
             Properties.Settings.Default.Builder_LastURL = gameURL;
-            
+
 
         }
 
@@ -58,6 +60,7 @@ namespace SimpleUpdater
                 RecursiveBuildManifest(projectRoot, ToLocalPath(projectRoot, nextDir), manifest);
             }
         }
+
 
         private static string ToLocalPath(string root, string dir)
         {

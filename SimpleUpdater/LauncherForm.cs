@@ -151,14 +151,6 @@ namespace SimpleUpdater
             var armaUserConfig = Properties.Settings.Default.ARMA_Executable + "\\userconfig";
             var modpackUserConfig = Properties.Settings.Default.ARMA_ModpackLocation + "\\userconfig";
 
-            Process proc = new Process();
-            proc.StartInfo.UseShellExecute = true;
-            proc.StartInfo.FileName = @"C:\WINDOWS\system32\xcopy.exe";
-            proc.StartInfo.Arguments = @"C:\source C:\destination /E /I";
-            proc.StartInfo.Arguments = modpackUserConfig + " "+armaUserConfig + " /E /I";
-            proc.Start();
-
-       
             StatusLabel.Text = "Ready to play";
             RequiresUpdate = false;
             updatePlayButton.Text = "Play";
@@ -192,6 +184,7 @@ namespace SimpleUpdater
             int totalFiles = RemoteManifest.Files.Count;
 
             int curFile = 0;
+
             foreach (KeyValuePair<string, string> kv in RemoteManifest.Files)
             {
 
@@ -242,6 +235,39 @@ namespace SimpleUpdater
                 }
                 curFile++;
             }
+
+            backgroundWorker1.ReportProgress(90, "@1rrf_content: Removing files that do not match the manifest from mod directories");
+            clearNonManifestFiles(gameInstallDir + "\\@1rrf_content", "", "/@1rrf_content");
+
+            backgroundWorker1.ReportProgress(91, "@1rrf_maps: Removing files that do not match the manifest from mod directories");
+            clearNonManifestFiles(gameInstallDir + "\\@1rrf_maps", "", "/@1rrf_maps");
+
+            backgroundWorker1.ReportProgress(92, "@1rrf_utility: Removing files that do not match the manifest from mod directories");
+            clearNonManifestFiles(gameInstallDir + "\\@1rrf_utility", "", "/@1rrf_utility");
+
+            backgroundWorker1.ReportProgress(93, "@ace: Removing files that do not match the manifest from mod directories");
+            clearNonManifestFiles(gameInstallDir + "\\@ace", "", "/@ace");
+
+            backgroundWorker1.ReportProgress(94, "@ares: Removing files that do not match the manifest from mod directories");
+            clearNonManifestFiles(gameInstallDir + "\\@ares", "", "/@ares");
+
+            backgroundWorker1.ReportProgress(95, "@cba_a3: Removing files that do not match the manifest from mod directories");
+            clearNonManifestFiles(gameInstallDir + "\\@cba_a3", "", "/@cba_a3");
+
+            backgroundWorker1.ReportProgress(96, "@rhs_afrf: Removing files that do not match the manifest from mod directories");
+            clearNonManifestFiles(gameInstallDir + "\\@rhs_afrf", "", "/@rhs_afrf");
+
+            backgroundWorker1.ReportProgress(97, "@rhs_usaf: Removing files that do not match the manifest from mod directories");
+            clearNonManifestFiles(gameInstallDir + "\\@rhs_usaf", "", "/@rhs_usaf");
+
+            backgroundWorker1.ReportProgress(98, "@task_force_radio: Removing files that do not match the manifest from mod directories");
+            clearNonManifestFiles(gameInstallDir + "\\@task_force_radio", "", "/@task_force_radio");
+
+            backgroundWorker1.ReportProgress(98, "plugin_files: Removing files that do not match the manifest from mod directories");
+            clearNonManifestFiles(gameInstallDir + "\\plugin_files", "", "/plugin_files");
+
+            backgroundWorker1.ReportProgress(99, "userconfig: Removing files that do not match the manifest from mod directories");
+            clearNonManifestFiles(gameInstallDir + "\\userconfig", "", "/userconfig");
 
             backgroundWorker1.ReportProgress(100, "Writing Local Manifest");
 
@@ -317,7 +343,59 @@ namespace SimpleUpdater
             return ((float)bytes).ToString("f") + " B";
         }
 
+        private void clearNonManifestFiles(string projectRoot, string dir, string modpackRoot)
+        {
+            string path = projectRoot;
+            Debug.WriteLine("Invoking Clear Non Manifest Function :" + path);
+   
+            string ManifestURL = Properties.Settings.Default.ManifestURL;
+            WebClient webClient = new WebClient();
+            webClient.DownloadProgressChanged += webClient_DownloadProgressChanged;
+            webClient.DownloadFileCompleted += webClient_DownloadFileCompleted;
 
+            string manifest = webClient.DownloadString(ManifestURL);
+            LauncherManifest RemoteManifest = JsonConvert.DeserializeObject<LauncherManifest>(manifest);
+
+            Debug.WriteLine("Invoking RecursiveRemoveFiles Function :" + path);
+            RecursiveRemoveFiles(path, "", modpackRoot, RemoteManifest);
+
+        }
+
+        private void RecursiveRemoveFiles(string projectRoot, string dir, string modpackRoot, LauncherManifest manifest)
+        {
+
+            string path = projectRoot + dir;
+            MessageBox.Show(path);
+
+            foreach (string file in Directory.GetFiles(path))
+            {
+                string localPath = ToFilePath(projectRoot, file);
+                string jsonPath = ToJsonPath(projectRoot, file);
+                
+                if(!manifest.Files.ContainsKey(modpackRoot + jsonPath))
+                {
+                    System.IO.File.Delete(localPath);
+                } else {
+                }
+            }
+
+            foreach (string nextDir in Directory.GetDirectories(path))
+            {
+                MessageBox.Show(ToJsonPath(projectRoot, nextDir));
+                RecursiveRemoveFiles(projectRoot, ToJsonPath(projectRoot, nextDir), modpackRoot, manifest);
+            }
+
+        }
+
+        private static string ToJsonPath(string root, string dir)
+        {
+            return dir.Replace(root, "").Replace("\\", "/");
+        }
+
+        private static string ToFilePath(string root, string dir)
+        {
+            return dir.Replace("/", "\\");
+        }
 
         #endregion
 
@@ -381,7 +459,7 @@ namespace SimpleUpdater
                 modpackLocation + "\\@task_force_radio;";
 
 
-            commandLine = commandLine + modLine + customCommandLine;
+            commandLine = commandLine + modLine + " " + customCommandLine;
 
             //Save Last Command Line Run for Debug
             Properties.Settings.Default.ARMA_LastCommandLine = commandLine;
@@ -486,7 +564,7 @@ namespace SimpleUpdater
 
         private void buildDifferencesManifest_Click(object sender, EventArgs e)
         {
-
+            
         }
 
         private void aboutInfil_Click(object sender, EventArgs e)
