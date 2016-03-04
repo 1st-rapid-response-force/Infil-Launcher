@@ -365,7 +365,6 @@ namespace SimpleUpdater
         {
 
             string path = projectRoot + dir;
-            MessageBox.Show(path);
 
             foreach (string file in Directory.GetFiles(path))
             {

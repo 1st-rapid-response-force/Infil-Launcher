@@ -148,7 +148,7 @@ namespace SimpleUpdater.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1.0.4")]
+        [global::System.Configuration.DefaultSettingValueAttribute("1.0.11")]
         public string infilVersion {
             get {
                 return ((string)(this["infilVersion"]));
