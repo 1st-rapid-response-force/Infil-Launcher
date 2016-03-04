@@ -381,7 +381,6 @@ namespace SimpleUpdater
 
             foreach (string nextDir in Directory.GetDirectories(path))
             {
-                MessageBox.Show(ToJsonPath(projectRoot, nextDir));
                 RecursiveRemoveFiles(projectRoot, ToJsonPath(projectRoot, nextDir), modpackRoot, manifest);
             }
 
