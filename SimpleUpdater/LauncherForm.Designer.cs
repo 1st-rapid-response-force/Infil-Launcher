@@ -38,13 +38,9 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
-            this.buildDifferencesManifest = new System.Windows.Forms.Button();
-            this.installTaskForce = new System.Windows.Forms.Button();
-            this.setTeamspeakPluginFolder = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
+            this.aboutInfil = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.setModpackFolder = new System.Windows.Forms.Button();
-            this.setARMA = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.validateButton = new System.Windows.Forms.Button();
             this.buildManifestButton = new System.Windows.Forms.Button();
@@ -52,7 +48,6 @@
             this.StatusLabel = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
-            this.aboutInfil = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -143,13 +138,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.aboutInfil);
-            this.splitContainer1.Panel2.Controls.Add(this.buildDifferencesManifest);
-            this.splitContainer1.Panel2.Controls.Add(this.installTaskForce);
-            this.splitContainer1.Panel2.Controls.Add(this.setTeamspeakPluginFolder);
-            this.splitContainer1.Panel2.Controls.Add(this.label4);
             this.splitContainer1.Panel2.Controls.Add(this.label3);
             this.splitContainer1.Panel2.Controls.Add(this.setModpackFolder);
-            this.splitContainer1.Panel2.Controls.Add(this.setARMA);
             this.splitContainer1.Panel2.Controls.Add(this.label2);
             this.splitContainer1.Panel2.Controls.Add(this.validateButton);
             this.splitContainer1.Panel2.Controls.Add(this.buildManifestButton);
@@ -166,46 +156,15 @@
             this.propertyGrid1.TabIndex = 0;
             this.propertyGrid1.SelectedObjectsChanged += new System.EventHandler(this.propertyGrid1_SelectedObjectsChanged);
             // 
-            // buildDifferencesManifest
+            // aboutInfil
             // 
-            this.buildDifferencesManifest.Location = new System.Drawing.Point(143, 329);
-            this.buildDifferencesManifest.Name = "buildDifferencesManifest";
-            this.buildDifferencesManifest.Size = new System.Drawing.Size(130, 40);
-            this.buildDifferencesManifest.TabIndex = 9;
-            this.buildDifferencesManifest.Text = "Build Difference Manifest";
-            this.buildDifferencesManifest.UseVisualStyleBackColor = true;
-            this.buildDifferencesManifest.Click += new System.EventHandler(this.buildDifferencesManifest_Click);
-            // 
-            // installTaskForce
-            // 
-            this.installTaskForce.Location = new System.Drawing.Point(9, 90);
-            this.installTaskForce.Name = "installTaskForce";
-            this.installTaskForce.Size = new System.Drawing.Size(130, 23);
-            this.installTaskForce.TabIndex = 8;
-            this.installTaskForce.Text = "Install Taskforce Radio";
-            this.installTaskForce.UseVisualStyleBackColor = true;
-            this.installTaskForce.Visible = false;
-            this.installTaskForce.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // setTeamspeakPluginFolder
-            // 
-            this.setTeamspeakPluginFolder.Location = new System.Drawing.Point(145, 277);
-            this.setTeamspeakPluginFolder.Name = "setTeamspeakPluginFolder";
-            this.setTeamspeakPluginFolder.Size = new System.Drawing.Size(130, 23);
-            this.setTeamspeakPluginFolder.TabIndex = 7;
-            this.setTeamspeakPluginFolder.Text = "Set Teamspeak Plugin Folder";
-            this.setTeamspeakPluginFolder.UseVisualStyleBackColor = true;
-            this.setTeamspeakPluginFolder.Visible = false;
-            this.setTeamspeakPluginFolder.Click += new System.EventHandler(this.setTeamspeakPluginFolder_Click);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(107, 313);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(59, 13);
-            this.label4.TabIndex = 6;
-            this.label4.Text = "Do not use";
+            this.aboutInfil.Location = new System.Drawing.Point(143, 32);
+            this.aboutInfil.Name = "aboutInfil";
+            this.aboutInfil.Size = new System.Drawing.Size(130, 23);
+            this.aboutInfil.TabIndex = 10;
+            this.aboutInfil.Text = "About Infil";
+            this.aboutInfil.UseVisualStyleBackColor = true;
+            this.aboutInfil.Click += new System.EventHandler(this.aboutInfil_Click);
             // 
             // label3
             // 
@@ -218,23 +177,13 @@
             // 
             // setModpackFolder
             // 
-            this.setModpackFolder.Location = new System.Drawing.Point(145, 61);
+            this.setModpackFolder.Location = new System.Drawing.Point(7, 61);
             this.setModpackFolder.Name = "setModpackFolder";
             this.setModpackFolder.Size = new System.Drawing.Size(130, 43);
             this.setModpackFolder.TabIndex = 4;
             this.setModpackFolder.Text = "Set Modpack Download Folder";
             this.setModpackFolder.UseVisualStyleBackColor = true;
             this.setModpackFolder.Click += new System.EventHandler(this.setModpackFolder_Click);
-            // 
-            // setARMA
-            // 
-            this.setARMA.Location = new System.Drawing.Point(145, 32);
-            this.setARMA.Name = "setARMA";
-            this.setARMA.Size = new System.Drawing.Size(130, 23);
-            this.setARMA.TabIndex = 3;
-            this.setARMA.Text = "Set ARMA 3 Executable";
-            this.setARMA.UseVisualStyleBackColor = true;
-            this.setARMA.Click += new System.EventHandler(this.setARMA_Click);
             // 
             // label2
             // 
@@ -283,16 +232,6 @@
             this.StatusLabel.TabIndex = 7;
             this.StatusLabel.Text = "Checking For Updates...";
             // 
-            // aboutInfil
-            // 
-            this.aboutInfil.Location = new System.Drawing.Point(145, 110);
-            this.aboutInfil.Name = "aboutInfil";
-            this.aboutInfil.Size = new System.Drawing.Size(130, 23);
-            this.aboutInfil.TabIndex = 10;
-            this.aboutInfil.Text = "About Infil";
-            this.aboutInfil.UseVisualStyleBackColor = true;
-            this.aboutInfil.Click += new System.EventHandler(this.aboutInfil_Click);
-            // 
             // LauncherForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -310,7 +249,7 @@
             this.MaximumSize = new System.Drawing.Size(935, 566);
             this.MinimumSize = new System.Drawing.Size(935, 566);
             this.Name = "LauncherForm";
-            this.Text = "Infil - 1st RRF Game Launcher";
+            this.Text = "Infil - 1st RRF Modpack Updater";
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
@@ -341,14 +280,9 @@
         private System.Windows.Forms.PropertyGrid propertyGrid1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button validateButton;
-        private System.Windows.Forms.Button setARMA;
         private System.Windows.Forms.Button setModpackFolder;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button setTeamspeakPluginFolder;
         private System.ComponentModel.BackgroundWorker backgroundWorker2;
-        private System.Windows.Forms.Button installTaskForce;
-        private System.Windows.Forms.Button buildDifferencesManifest;
         private System.Windows.Forms.Button aboutInfil;
     }
 }

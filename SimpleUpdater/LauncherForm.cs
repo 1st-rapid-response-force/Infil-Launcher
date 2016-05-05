@@ -75,9 +75,9 @@ namespace SimpleUpdater
             }
             else
             {
-                StatusLabel.Text = "Game up to date.  Press Play to start";
-                updatePlayButton.Text = "Play";
-                updatePlayButton.Enabled = true;
+                StatusLabel.Text = "Game up to date.";
+                updatePlayButton.Text = "Up-to-Date";
+                updatePlayButton.Enabled = false;
                 RequiresUpdate = false;
             }
         }
@@ -235,7 +235,7 @@ namespace SimpleUpdater
                 }
                 curFile++;
             }
-
+           
             backgroundWorker1.ReportProgress(90, "@1rrf_content: Removing files that do not match the manifest from mod directories");
             clearNonManifestFiles(gameInstallDir + "\\@1rrf_content", "", "/@1rrf_content");
 
@@ -425,15 +425,7 @@ namespace SimpleUpdater
             }
             else
             {
-                if (Properties.Settings.Default.ARMA_Executable == null || Properties.Settings.Default.ARMA_Executable == "")
-                {
-                    MessageBox.Show("Please set your preferred ARMA launcher directory in the options tab");
-                }
-                else
-                {
-                    LaunchGame();
-                }
-        
+              
             }
         }
 
@@ -481,7 +473,14 @@ namespace SimpleUpdater
 
         private void validateButton_Click(object sender, EventArgs e)
         {
-            UpdateGame();
+            if (Properties.Settings.Default.ARMA_ModpackLocation == null || Properties.Settings.Default.ARMA_ModpackLocation == "")
+            {
+                MessageBox.Show("Please set your preferred modpack download location in the options tab");
+            }
+            else
+            {
+                UpdateGame();
+            }
         }
 
         private void setARMA_Click(object sender, EventArgs e)
